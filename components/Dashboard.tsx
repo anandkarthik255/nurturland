@@ -3,12 +3,9 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   LayoutDashboard, 
-  BookOpen, 
   ShoppingBag, 
   Users2, 
-  Bell, 
   LogOut,
-  Search,
   CheckCircle2,
   Clock,
   Plus,
@@ -114,7 +111,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onExit, onStartModule }) => {
 
   const handleNavClick = (id: any) => {
     setActiveTab(id);
-    setIsSidebarOpen(false); // Close sidebar on mobile after clicking
+    setIsSidebarOpen(false); // Close sidebar on mobile after selection
   };
 
   return (
@@ -227,7 +224,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onExit, onStartModule }) => {
                 <div className="relative z-10 max-w-xl">
                   <h2 className="text-3xl md:text-4xl font-serif mb-4 italic text-green-400">Next Sensory Breakthrough</h2>
                   <p className="text-green-100 text-sm md:text-lg mb-8 leading-relaxed">
-                    Bridge the gap between daily observations and clinical progress. Our AI generates a specific sensory roadmap based on Leo's recent activity.
+                    Bridge the gap between daily observations and clinical progress. Our AI generates a roadmap based on Leo's recent activity.
                   </p>
                   <button 
                     onClick={generatePersonalizedPath}
@@ -360,22 +357,10 @@ const Dashboard: React.FC<DashboardProps> = ({ onExit, onStartModule }) => {
                        <h3 className="font-bold text-nurtur-dark text-lg">Bella's Insight</h3>
                     </div>
                     <p className="text-slate-600 text-xs md:text-sm leading-relaxed mb-6">
-                      "I've noticed a pattern: Leo's <b>Tactile seeking</b> increases after high <b>Auditory</b> stress. This means he uses deep pressure to self-regulate. Focus on proprioceptive 'heavy work' tasks today."
+                      "Leo's Tactile seeking increases after stress. Focus on proprioceptive tasks today."
                     </p>
-                    <div className="bg-white p-3 rounded-2xl text-[9px] md:text-[10px] font-bold text-nurtur-dark text-center shadow-sm uppercase tracking-wider">
+                    <div className="bg-white p-3 rounded-2xl text-[10px] font-bold text-nurtur-dark text-center shadow-sm uppercase tracking-wider">
                        Updated 5 mins ago
-                    </div>
-                 </div>
-
-                 <div className="bg-white p-6 md:p-8 rounded-[2rem] md:rounded-[3rem] border border-slate-200">
-                    <h3 className="font-bold mb-4 text-slate-400 uppercase text-[10px] md:text-xs tracking-widest">Growth Targets</h3>
-                    <div className="space-y-3">
-                       {['Independent Dressing', 'Verbal Greeting', 'Transitions'].map((goal, i) => (
-                         <div key={i} className="flex items-center gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                            <CheckCircle2 size={16} className="text-nurtur-green shrink-0" />
-                            <span className="text-xs md:text-sm font-semibold text-slate-700">{goal}</span>
-                         </div>
-                       ))}
                     </div>
                  </div>
               </div>
@@ -420,10 +405,6 @@ const Dashboard: React.FC<DashboardProps> = ({ onExit, onStartModule }) => {
                             <Plus size={18} />
                          </button>
                       </div>
-                      <div className="mt-4 pt-4 border-t border-slate-50 flex items-center gap-2">
-                         <CheckCircle2 size={12} className="text-blue-500" />
-                         <span className="text-[9px] md:text-[10px] font-black text-slate-400 uppercase tracking-tighter">Therapist Verified</span>
-                      </div>
                    </div>
                  ))}
               </div>
@@ -444,18 +425,12 @@ const Dashboard: React.FC<DashboardProps> = ({ onExit, onStartModule }) => {
                    <h2 className="text-xl md:text-2xl font-serif text-nurtur-dark flex items-center gap-3">
                       <Users2 className="text-nurtur-green shrink-0" /> Team Collaboration
                    </h2>
-                   <div className="flex -space-x-2 shrink-0">
-                      <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-blue-500 border-2 border-white ring-1 ring-slate-100"></div>
-                      <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-green-500 border-2 border-white ring-1 ring-slate-100"></div>
-                      <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-orange-500 border-2 border-white ring-1 ring-slate-100"></div>
-                   </div>
                 </div>
 
                 <div className="space-y-8">
                    {[
-                     { user: "Dr. Maya (Therapist)", text: "Leo had a breakthrough with eye contact today! He focused for 10 seconds during the visual block session.", time: "2h ago", color: "bg-blue-500" },
-                     { user: "Sarah (Parent)", text: "That's amazing! He slept much better after the sensory play. Thank you for the tips.", time: "4h ago", color: "bg-green-500" },
-                     { user: "Mr. James (Teacher)", text: "Updated his IEP goals in the shared portal. Let's discuss during our sync next Tuesday.", time: "1d ago", color: "bg-orange-500" },
+                     { user: "Dr. Maya (Therapist)", text: "Leo focused for 10 seconds today!", time: "2h ago", color: "bg-blue-500" },
+                     { user: "Sarah (Parent)", text: "That's amazing! Slept better after sensory play.", time: "4h ago", color: "bg-green-500" },
                    ].map((post, i) => (
                      <div key={i} className="flex gap-3 md:gap-4">
                         <div className={`w-8 h-8 md:w-10 md:h-10 rounded-full ${post.color} shrink-0 flex items-center justify-center text-white font-bold text-[10px] md:text-xs`}>
@@ -473,84 +448,82 @@ const Dashboard: React.FC<DashboardProps> = ({ onExit, onStartModule }) => {
                      </div>
                    ))}
                 </div>
-
-                <div className="mt-10 pt-8 border-t border-slate-100">
-                   <div className="flex items-center gap-3 md:gap-4">
-                      <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-nurtur-green shrink-0 overflow-hidden shadow-inner">
-                        <img src="https://i.pravatar.cc/100?u=sarah" alt="Me" className="w-full h-full object-cover" />
-                      </div>
-                      <div className="flex-grow relative">
-                        <input 
-                          type="text" 
-                          placeholder="Share an update..." 
-                          className="w-full bg-slate-50 rounded-2xl pl-5 md:pl-6 pr-12 md:pr-14 py-3 md:py-4 border-none focus:ring-2 focus:ring-nurtur-green text-xs md:text-sm"
-                        />
-                        <button className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 bg-nurtur-dark text-white rounded-full flex items-center justify-center hover:bg-nurtur-green transition-all shadow-md">
-                           <Send size={14} />
-                        </button>
-                      </div>
-                   </div>
-                </div>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
 
-        {/* MODAL: LOG ACTIVITY */}
-        <AnimatePresence>
-           {isLogging && (
-             <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-6 bg-nurtur-dark/40 backdrop-blur-sm">
-                <motion.div 
-                  initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                  className="bg-white w-full max-w-md rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-10 shadow-2xl"
-                >
-                   <h2 className="text-2xl md:text-3xl font-serif mb-6 md:mb-8 text-nurtur-dark">Log Activity</h2>
-                   <div className="space-y-6">
-                      <div>
-                         <label className="block text-[9px] md:text-[10px] font-black uppercase text-slate-400 mb-3 tracking-widest">Category</label>
-                         <div className="grid grid-cols-3 gap-2">
-                            {['Visual', 'Auditory', 'Tactile', 'Vestibular', 'Motor'].map(cat => (
-                              <button 
-                                key={cat}
-                                onClick={() => setNewLog({...newLog, category: cat})}
-                                className={`py-2 md:py-3 text-[9px] md:text-[10px] font-bold rounded-xl md:rounded-2xl transition-all ${newLog.category === cat ? 'bg-nurtur-dark text-white shadow-lg' : 'bg-slate-100 text-slate-500 hover:bg-slate-200'}`}
-                              >
-                                {cat}
-                              </button>
-                            ))}
-                         </div>
-                      </div>
-                      <div>
-                         <label className="block text-[9px] md:text-[10px] font-black uppercase text-slate-400 mb-3 tracking-widest">Observation</label>
-                         <textarea 
-                           placeholder="Describe the moment..."
-                           value={newLog.observation}
-                           onChange={(e) => setNewLog({...newLog, observation: e.target.value})}
-                           className="w-full bg-slate-50 border-none rounded-2xl md:rounded-3xl p-4 md:p-5 text-xs md:text-sm focus:ring-2 focus:ring-nurtur-green h-28 md:h-32"
-                         />
-                      </div>
-                      <div className="flex gap-3 md:gap-4 pt-4">
-                         <button 
-                           onClick={() => setIsLogging(false)}
-                           className="flex-grow py-3 md:py-4 bg-slate-100 text-slate-500 rounded-xl md:rounded-2xl font-bold hover:bg-slate-200 transition-all text-sm"
-                         >
-                           Cancel
-                         </button>
-                         <button 
-                           onClick={addLog}
-                           className="flex-grow py-3 md:py-4 bg-nurtur-dark text-white rounded-xl md:rounded-2xl font-bold hover:bg-nurtur-green transition-all shadow-xl shadow-green-900/10 text-sm"
-                         >
-                           Save Log
-                         </button>
-                      </div>
-                   </div>
-                </motion.div>
-             </div>
-           )}
-        </AnimatePresence>
+        {/* FAB for Mobile */}
+        <div className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] flex justify-center z-20">
+           <button 
+             onClick={() => setIsLogging(true)}
+             className="w-full py-4 bg-nurtur-dark text-white rounded-2xl font-bold flex items-center justify-center gap-3 shadow-2xl shadow-green-900/40 active:scale-95 transition-all"
+           >
+              <Plus size={20} /> Log Sensory Activity
+           </button>
+        </div>
       </main>
+
+      {/* MODAL: LOG ACTIVITY */}
+      <AnimatePresence>
+         {isLogging && (
+           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-6 bg-nurtur-dark/40 backdrop-blur-sm">
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                className="bg-white w-full max-w-md rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-10 shadow-2xl"
+              >
+                 <h2 className="text-2xl md:text-3xl font-serif mb-6 md:mb-8 text-nurtur-dark">Log Event</h2>
+                 <div className="space-y-6">
+                    <div>
+                       <label className="block text-[9px] md:text-[10px] font-black uppercase text-slate-400 mb-3 tracking-widest">Category</label>
+                       <div className="grid grid-cols-3 gap-2">
+                          {['Visual', 'Auditory', 'Tactile', 'Vestibular', 'Motor'].map(cat => (
+                            <button 
+                              key={cat}
+                              onClick={() => setNewLog({...newLog, category: cat})}
+                              className={`py-2 md:py-3 text-[9px] md:text-[10px] font-bold rounded-xl md:rounded-2xl transition-all ${newLog.category === cat ? 'bg-nurtur-dark text-white shadow-lg' : 'bg-slate-100 text-slate-500 hover:bg-slate-200'}`}
+                            >
+                              {cat}
+                            </button>
+                          ))}
+                       </div>
+                    </div>
+                    <div>
+                       <label className="block text-[9px] md:text-[10px] font-black uppercase text-slate-400 mb-3 tracking-widest">Observation</label>
+                       <textarea 
+                         placeholder="Describe the moment..."
+                         value={newLog.observation}
+                         onChange={(e) => setNewLog({...newLog, observation: e.target.value})}
+                         className="w-full bg-slate-50 border-none rounded-2xl md:rounded-3xl p-4 md:p-5 text-xs md:text-sm focus:ring-2 focus:ring-nurtur-green h-28 md:h-32"
+                       />
+                    </div>
+                    <div className="flex gap-3 md:gap-4 pt-4">
+                       <button 
+                         onClick={() => setIsLogging(false)}
+                         className="flex-grow py-3 md:py-4 bg-slate-100 text-slate-500 rounded-xl md:rounded-2xl font-bold hover:bg-slate-200 transition-all text-sm"
+                       >
+                         Cancel
+                       </button>
+                       <button 
+                         onClick={addLog}
+                         className="flex-grow py-3 md:py-4 bg-nurtur-dark text-white rounded-xl md:rounded-2xl font-bold hover:bg-nurtur-green transition-all shadow-xl text-sm"
+                       >
+                         Save Log
+                       </button>
+                    </div>
+                 </div>
+              </motion.div>
+           </div>
+         )}
+      </AnimatePresence>
+
+      <style>{`
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+      `}</style>
     </div>
   );
 };
